@@ -10,6 +10,7 @@
 LiquidCrystal_I2C lcd(0x27,16,2); // Указываем I2C адрес (наиболее распространенное значение), а также параметры экрана (в случае LCD 1602 - 2 строки по 16 символов в каждой  
 //LiquidCrystal_PCF8574 lcd(0x27); // Вариант для библиотеки PCF8574  
 Servo servo; 
+Servo servo1;
 int trigPin = 11;    //Триггер – зеленый проводник 
  
 int echoPin = 12;    //Эхо – желтый проводник 
@@ -22,6 +23,7 @@ void setup()
   pinMode(echoPin, INPUT); 
  
   servo.attach(7); 
+  servo.attach(8);
   lcd.init();                      // Инициализация дисплея   
   lcd.backlight();                 // Подключение подсветки 
   lcd.setCursor(0,0);              // Установка курсора в начало первой строки 
@@ -55,8 +57,11 @@ void loop(){
   cm = (duration/2) / 29.1; 
   if(cm > 15){ 
     servo.write(0); 
+    servo1.write(0);
+
   } else{ 
     servo.write(180); 
+    servo1.write(180); 
   } 
    
 }
